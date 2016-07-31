@@ -11,13 +11,15 @@ var Anchor = function(roomNumber) {
 
 /**
  * capture and write into video DOM by it's id.
- * @param  {[type]} elementID [description]
- * @return {[type]}           [description]
+ * @param  {[type]}  elementID [description]
+ * @param  {Boolean} isVideo   [description]
+ * @param  {Boolean} isAudio   [description]
+ * @return {[type]}            [description]
  */
-Anchor.prototype.capture = function(elementID) {
+Anchor.prototype.capture = function(elementID, isVideo, isAudio) {
 	getUserMedia.call(navigator, {
-		video: true,
-		audio: false
+		video: isVideo === undefined ? true : isVideo,
+		audio: isAudio === undefined ? true : isAudio
 	}, function getUserMediaDone(localMediaStream) {
 		var video = document.getElementById(elementID);
 		video.src = window.URL.createObjectURL(localMediaStream);
