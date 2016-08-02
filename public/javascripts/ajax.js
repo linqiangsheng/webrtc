@@ -7,7 +7,7 @@
 
 'use strict';
 
-var Ajax = (function(stringifyFn) {
+var Ajax = (function(stringifyFn, parseFn) {
 	/**
 	 * Ajax对象 * @type {Object}
 	 */
@@ -69,7 +69,7 @@ var Ajax = (function(stringifyFn) {
 			//监听
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState == 4) {
-					xhr.status == 200 && success && success(xhr.responseText);
+					xhr.status == 200 && success && success(parseFn(xhr.responseText));
 					xhr.status != 200 && error && error(xhr.status, xhr.responseText);
 					xhr = undefined;
 				}
@@ -102,7 +102,7 @@ var Ajax = (function(stringifyFn) {
 
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState == 4) {
-					xhr.status == 200 && success && success(xhr.responseText);
+					xhr.status == 200 && success && success(parseFn(xhr.responseText));
 					xhr.status != 200 && error && error(xhr.status, xhr.responseText);
 					xhr = undefined;
 				}
@@ -131,4 +131,4 @@ var Ajax = (function(stringifyFn) {
 	};
 
 	return Ajax;
-})(JSON.stringify);
+})(JSON.stringify, JSON.parse);
