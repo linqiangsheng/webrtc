@@ -5,7 +5,7 @@
 		<link rel='stylesheet' href='/stylesheets/style.css' />
 	</head>
 	<body>
-		<h1><%= title %></h1>
+		<h1><%= title %> A </h1>
 		<p>Welcome to <%= title %></p>
 		<video id="video" class="video-block" autoplay></video>
 	</body>
@@ -18,13 +18,13 @@
 
 	<script type="text/javascript">
 		var capture = new Capture();
-		var device = new Device('13926864900');
+		var device = new Device('a');
 		device.monitor();
 		capture.capture({isAudio : false}).then(({uri, stream}) => {
 			console.log(stream);
-			// document.getElementById('video').src = uri;
+			document.getElementById('video').src = uri;
 
-			// device.call('13926864900', stream);
+			device.call('b', stream);
 		}, (error) => {
 			console.error(error);
 		})
