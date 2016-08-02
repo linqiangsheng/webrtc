@@ -71,7 +71,7 @@ class Capture {
 			}, function(stream) {
 				_p.uri = URL.createObjectURL(stream);
 				_p.stream = stream;
-				resolve(_p.uri, _p.stream);
+				resolve({uri: _p.uri, stream: _p.stream});
 			}, reject);
 		});
 	}
